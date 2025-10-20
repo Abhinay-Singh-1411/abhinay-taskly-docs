@@ -1,0 +1,28 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# MkDocs build output
+site/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
