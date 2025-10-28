@@ -1,72 +1,122 @@
-# Quickstart - Hello Taskly
+# Quickstart — Hello Taskly
 
-Get started with Taskly API in just a few minutes. This guide walks you through creating your first task.
+Welcome! This guide helps you create your first task, list tasks, and mark one as complete, demonstrating how to interact with the Taskly API from different tools.
+
+---
 
 ## Prerequisites
+- **API Key:** Use `DEMO_KEY` (just for demo/testing).
+- **Tools:**  
+  - `curl` (installed by default on most Linux/Mac; on Windows, use PowerShell or Git Bash)  
+  - Python 3.8+ with `requests` library (`pip install requests`)  
+  - Web browser for dashboard or Swagger (optional)
 
-Before starting, ensure you have:
+---
 
-- **API Key**: Use `DEMO_KEY` for this demo (or get one from [Taskly dashboard](https://api.taskly.app))
-- **Tools**: cURL or Python 3.8+
+## Step 1: Create a Task Using cURL
 
-## Step 1: Create a Task (cURL)
+curl -X POST https://api.taskly.app/v1/tasks  
+-H "Authorization: Bearer DEMO_KEY"  
+-H "Content-Type: application/json"  
+-d '{"title": "My first task", "due": "2025-11-01"}'  
 
-Use cURL to send your first POST request. This creates a task titled "My First Task".
+**Expected Response:**
 
-```bash
-curl -X POST https://api.taskly.app/v1/tasks \
-  -H "Authorization: Bearer DEMO_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "My First Task",
-    "due": "2025-11-01"
-  }'
+{  
+"id": "task_12345",  
+"title": "My first task",  
+"due": "2025-11-01",  
+"status": "pending"  
+}  
 
-Expected Response: HTTP 201 with JSON of the new task.
 
-Step 2: Get Tasks (Python Example)
-Fetch all tasks using Python's requests library.
+**Tip:** Save `id` for later (e.g., use `task_12345`).
 
-import requests
+---
 
-response = requests.get(
-    "https://api.taskly.app/v1/tasks",
-    headers={"Authorization": "Bearer DEMO_KEY"}
-)
-print(response.json())
+## Step 2: List All Tasks
 
-Expected Output:
+curl -X GET https://api.taskly.app/v1/tasks  
+-H "Authorization: Bearer DEMO_KEY"  
 
-[
-  {
-    "id": "task_123",
-    "title": "My First Task",
-    "due": "2025-11-01",
-    "status": "pending"
-  }
-]
+**Sample Output:**
 
-Step 3: Use the CLI
-For command-line workflow, install and try the Taskly CLI:
+[  
+{  
+"id": "task_12345",  
+"title": "My first task",  
+"due": "2025-11-01",  
+"status": "pending"  
+},  
+{  
+"id": "task_67890",  
+"title": "Another task",  
+"due": "2025-10-31",  
+"status": "completed"  
+}  
+]  
 
-# Install (in your venv)
-pip install taskly-cli
 
-# Create task
-taskly create "Buy groceries" --due 2025-11-01
+---
 
-# List tasks
-taskly list
+## Step 3: Mark the Task as Complete
 
-!!! success "All Set!"
-You've successfully created and retrieved tasks! Next, explore the tutorials section for language-specific guides.
+Replace `task_12345` with your task ID from step 1.
 
-Troubleshooting
-401 Unauthorized: Check your DEMO_KEY in headers
+curl -X PATCH https://api.taskly.app/v1/tasks/task_12345  
+-H "Authorization: Bearer DEMO_KEY"  
+-H "Content-Type: application/json"  
+-d '{"status": "completed"}'  
 
-Connection errors: Verify the base URL https://api.taskly.app/v1
+**Response:**
 
-More help: Troubleshooting page
+{  
+"id": "task_12345",  
+"title": "My first task",  
+"due": "2025-11-01",  
+"status": "completed"  
+}  
 
-- **Why Better?** Each code block uses language tags (``````python, ```
+
+---
+
+## Step 4: Try the CLI (Optional)
+
+Run these commands in your terminal:  
+
+taskly create "Buy milk" --due 2025-11-01  
+taskly list  
+taskly complete task_XXXXX # replace "task_XXXXX" with actual ID from create  
+
+
+**Note:** The CLI is imaginary here; it’s for illustration.
+
+---
+
+## Next Steps
+
+- Explore further API features (update, delete).
+- Practice with Python scripts.
+- Integrate in your favorite tools or CI/CD pipelines.
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|--------|-----------|
+| `curl: command not found` | Install or use PowerShell. |
+| `404 Not Found` | Check URLs, file paths, or task ID. |
+| `401 Unauthorized` | Use correct `DEMO_KEY`. |
+| `python: command not found` | Reinstall Python or activate your virtual env. |
+
+---
+
+## Note
+This demo backend is static; no real server handles these requests. Only for tutorial purposes.
+
+Enjoy learning how APIs work!
+
+
+
 

@@ -1,41 +1,69 @@
 site_name: Taskly Documentation
+
 nav:
   - Home: index.md
   - Quickstart: quickstart.md
   - Tutorials:
-    - Python: tutorials/tutorial-python.md
-    - JavaScript: tutorials/tutorial-js.md
-    - cURL: tutorials/tutorial-curl.md
-  - API Reference: api/index.md 
+      - Python: tutorials/tutorial-python.md
+      - JavaScript: tutorials/tutorial-js.md
+      - cURL: tutorials/tutorial-curl.md
+  - API Reference: api/index.md
   - CLI: cli.md
   - Troubleshooting: troubleshooting.md
   - Contributing: contributing.md
+  - Release Notes: release-notes.md
+
 plugins:
   - search
   - mermaid2
-markdown_extensions:
-  - admonition
-  - codehilite
-  - toc:
-      permalink: true
-  - pymdownx.highlight:
-      auto_title: true
-      linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.superfences
-  - pymdownx.mark
-  - pymdownx.keys
 
+markdown_extensions:
+  - admonition               # Note/warning/tip boxes
+  - codehilite               # Syntax highlighting for code blocks
+  - toc:                     # Table of contents per-page
+      permalink: true
+  - pymdownx.highlight:      # Advanced code highlighting
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite    # Inline code highlighting
+  - pymdownx.superfences     # Advanced code fences (tabs, nesting)
+  - pymdownx.mark            # ==Highlight==
+  - pymdownx.keys            # Keyboard combo formatting (use ++Ctrl+C++)
+  - pymdownx.tasklist        # Tasklist checkboxes
+  - pymdownx.tabbed          # Tabbed blocks for code/language switches
+
+extra_css:
+  - stylesheets/extra.css    # Custom table/code styling
 
 theme:
   name: material
-  features:
-  - content.code.copy
-  - content.code.annotate
-  - content.tabs
-
   palette:
     - scheme: default
       primary: indigo
       accent: indigo
-  # Note: extra_css line can be added later for custom styles
+  features:
+    - content.code.copy      # Copy button on code blocks
+    - content.code.annotate  # Code annotation support
+    - content.tabs           # Tabs for multi-language/code example switches
+
+validation:
+  links:
+    absolute_links: relative_to_docs # Enables /... links from docs root (MkDocs 1.6+)
+
+# Optional: Make nice URLs on GitHub Pages
+use_directory_urls: true
+
+# Your docs folder may look like:
+# docs/
+#   index.md
+#   quickstart.md
+#   api/index.md
+#   tutorials/tutorial-python.md
+#   tutorials/tutorial-js.md
+#   tutorials/tutorial-curl.md
+#   cli.md
+#   troubleshooting.md
+#   contributing.md
+#   release-notes.md
+#   stylesheets/extra.css
