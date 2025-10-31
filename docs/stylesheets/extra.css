@@ -1,0 +1,7 @@
+/* Custom styles for diagrams */
+.mermaid {
+  background: white;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}

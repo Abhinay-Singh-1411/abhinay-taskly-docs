@@ -68,6 +68,6 @@ taskly --version
 ---
 
 !!! info "Still stuck?"
-    Double-check your command for typos, and see the [Quickstart](/quickstart/) or [API Reference](/api/) for more code examples.
+    Double-check your command for typos, and see the [Quickstart](quickstart.md) or [API Reference](api/index-api.md) for more code examples.
     If you still need help, create a GitHub issue or ask in the community!
 

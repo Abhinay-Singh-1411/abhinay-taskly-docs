@@ -1,5 +1,39 @@
 site_name: Taskly Documentation
 
+theme:
+  name: material
+  features:
+    - content.code.copy
+  palette:
+    scheme: default
+    primary: indigo
+    accent: indigo
+
+  font: false
+  icon:
+    repo: fontawesome/brands/git-alt
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+plugins:
+  - search
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10.6.0/dist/mermaid.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.min.js
+
 nav:
   - Home: index.md
   - Quickstart: quickstart.md
@@ -7,31 +41,30 @@ nav:
       - Python: tutorials/tutorial-python.md
       - JavaScript: tutorials/tutorial-js.md
       - cURL: tutorials/tutorial-curl.md
-  - API Reference: api/index.md
+  - API Reference: api/index-api.md
   - CLI: cli.md
   - Troubleshooting: troubleshooting.md
   - Contributing: contributing.md
   - Release Notes: release-notes.md
 
-plugins:
-  - search
-  - mermaid2
-
 markdown_extensions:
-  - admonition               # Note/warning/tip boxes
-  - codehilite               # Syntax highlighting for code blocks
-  - toc:                     # Table of contents per-page
-      permalink: true
-  - pymdownx.highlight:      # Advanced code highlighting
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.inlinehilite    # Inline code highlighting
-  - pymdownx.superfences     # Advanced code fences (tabs, nesting)
-  - pymdownx.mark            # ==Highlight==
-  - pymdownx.keys            # Keyboard combo formatting (use ++Ctrl+C++)
-  - pymdownx.tasklist        # Tasklist checkboxes
-  - pymdownx.tabbed          # Tabbed blocks for code/language switches
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.extra
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist
+  - pymdownx.tilde
+  - pymdownx.emoji
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.progressbar
+  - pymdownx.arithmatex
+  - pymdownx.snippets
+
 
 extra_css:
   - stylesheets/extra.css    # Custom table/code styling
